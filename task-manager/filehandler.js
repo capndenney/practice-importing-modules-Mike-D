@@ -6,11 +6,11 @@ function saveTask(filePath, tasks) {
 }
 
 function loadTasks(filePath) {
-    try { 
+    if (fs.existsSync(filePath)) {
         const dataFile = fs.readFileSync(filePath, 'utf-8');
         return JSON.parse(dataFile);
-    } catch (error) {
-        console.error(`Error loading file: ${error.message}`);
+    } else {
+        return [];
     }
 }
 
